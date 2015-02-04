@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using DocumentSearcher.Models.DatabaseAccess.RepositoryInterface;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 
 namespace DocumentSearcher.Models.DatabaseAccess.MongoRepositoryImpl
 {
@@ -16,14 +17,20 @@ namespace DocumentSearcher.Models.DatabaseAccess.MongoRepositoryImpl
             this.database = database;
         }
 
-        public void InsertUser(User user)
+        public void Create(User user)
         {
             UserCollection.Insert(user);
         }
 
-        public User[] GetUsers()
+        public User[] GetAll()
         {
             return UserCollection.FindAll().ToArray();            
+        }
+
+        public User FindByLogin(string login)
+        {
+            var query = Query<User>.EQ(u => u.Login, login);
+            return UserCollection.FindOne(query);
         }
 
         private MongoCollection<User> UserCollection

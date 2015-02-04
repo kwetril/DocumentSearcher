@@ -8,8 +8,10 @@ namespace DocumentSearcher.Models.DatabaseAccess.RepositoryInterface
 {
     public interface IUserRepository
     {
-        void InsertUser(User user);
+        void Create(User user);
 
-        User[] GetUsers();
+        User[] GetAll();
+
+        User FindByLogin(string login);
     }
 }
