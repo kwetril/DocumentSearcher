@@ -1,0 +1,27 @@
+﻿@model DocumentSearcher.Models.User
+
+@{
+    ViewBag.Title = "Register";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Registration failed.");
+    <div>
+        <fieldset>
+            <legend>Registration</legend>
+            <div>@Html.LabelFor(u => u.Login)</div>
+            <div>
+                @Html.TextBoxFor(u => u.Login)
+                @Html.ValidationMessageFor(u => u.Login)
+            </div>
+
+            <div>@Html.LabelFor(u => u.Password)</div>
+            <div>
+                @Html.PasswordFor(u => u.Password)
+                @Html.ValidationMessageFor(u => u.Password)
+            </div>
+            <input type="submit" value="Register" />
+        </fieldset>
+    </div>
+}
