@@ -27,7 +27,7 @@ namespace DocumentSearcher.Controllers
 
         public ActionResult Insert(string user)
         {
-            userRepository.InsertUser(new User() {Name = user});
+            userRepository.InsertUser(new User() {Login = user});
             return RedirectToAction("Index");
         }
 

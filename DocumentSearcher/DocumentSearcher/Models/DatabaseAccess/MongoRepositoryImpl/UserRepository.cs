@@ -23,14 +23,14 @@ namespace DocumentSearcher.Models.DatabaseAccess.MongoRepositoryImpl
 
         public User[] GetUsers()
         {
-            return UserCollection.FindAll().ToArray();
+            return UserCollection.FindAll().ToArray();            
         }
 
         private MongoCollection<User> UserCollection
         {
             get
             {
-                return database.GetCollection<User>("Users");
+                return database.GetCollection<User>("User");
             }
         }
     }
