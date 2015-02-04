@@ -127,9 +127,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DatabaseAccess\IUserRepository.cs" />
     <Compile Include="Models\DatabaseAccess\MongoDbInitializer.cs" />
-    <Compile Include="Models\DatabaseAccess\UserRepository.cs" />
+    <Compile Include="Models\DatabaseAccess\MongoRepositoryImpl\UserRepository.cs" />
+    <Compile Include="Models\DatabaseAccess\RepositoryInterface\IUserRepository.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

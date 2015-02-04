@@ -7,6 +7,8 @@ namespace DocumentSearcher.App_Start
     using System.Configuration;
     using System.Web;
     using DocumentSearcher.Models.DatabaseAccess;
+    using DocumentSearcher.Models.DatabaseAccess.MongoRepositoryImpl;
+    using DocumentSearcher.Models.DatabaseAccess.RepositoryInterface;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using MongoDB.Driver;
     using Ninject;

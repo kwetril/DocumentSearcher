@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DocumentSearcher.Models;
 using DocumentSearcher.Models.DatabaseAccess;
+using DocumentSearcher.Models.DatabaseAccess.RepositoryInterface;
 
 namespace DocumentSearcher.Controllers
 {

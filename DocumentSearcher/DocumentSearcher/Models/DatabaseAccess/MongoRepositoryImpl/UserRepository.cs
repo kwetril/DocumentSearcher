@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DocumentSearcher.Models.DatabaseAccess.RepositoryInterface;
 using MongoDB.Driver;
 
-namespace DocumentSearcher.Models.DatabaseAccess
+namespace DocumentSearcher.Models.DatabaseAccess.MongoRepositoryImpl
 {
     public class UserRepository : IUserRepository
     {
@@ -19,14 +20,14 @@ namespace DocumentSearcher.Models.DatabaseAccess
         {
             UserCollection.Insert(user);
         }
-        
+
         public User[] GetUsers()
         {
             return UserCollection.FindAll().ToArray();
         }
 
-        private MongoCollection<User> UserCollection 
-        { 
+        private MongoCollection<User> UserCollection
+        {
             get
             {
                 return database.GetCollection<User>("Users");
