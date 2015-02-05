@@ -6,11 +6,11 @@ using System.Web.Mvc;
 
 namespace DocumentSearcher.Controllers
 {
-    public class HomeController : Controller
+    public class SearchController : Controller
     {
         //
-        // GET: /Home/
-        public ActionResult About()
+        // GET: /Search/
+        public ActionResult Index()
         {
             return View();
         }

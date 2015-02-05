@@ -32,7 +32,7 @@ namespace DocumentSearcher.Controllers
                 if (IsValid(user.Login, user.Password))
                 {
                     FormsAuthentication.SetAuthCookie(user.Login, false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Search");
                 }
                 else
                 {
@@ -60,7 +60,7 @@ namespace DocumentSearcher.Controllers
                 userToSave.PasswordSalt = cryptoService.GenerateSalt();
                 userToSave.Password = cryptoService.Compute(user.Password, userToSave.PasswordSalt);
                 userRepository.Create(userToSave);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Search");
             }
             else
             {
@@ -73,7 +73,7 @@ namespace DocumentSearcher.Controllers
         public ActionResult LogOut(User user)
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Search");
         }
 
         private bool IsValid(string login, string password)
