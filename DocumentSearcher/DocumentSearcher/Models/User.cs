@@ -19,9 +19,9 @@ namespace DocumentSearcher.Models
         [Required]
         [DataType(DataType.Password)]
         [StringLength(20, MinimumLength = 6)]
-
-        public string Password { get; set; }
         [Display(Name = "Password")]
+        public string Password { get; set; }
+
         public string PasswordSalt { get; set; }
     }
 }

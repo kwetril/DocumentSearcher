@@ -68,6 +68,7 @@ namespace DocumentSearcher.App_Start
             kernel.Bind<MongoDatabase>().ToConstant(database);
 
             kernel.Bind<IUserRepository>().To<UserRepository>();
+            kernel.Bind<IIndexedDocumentRepository>().To<IndexedDocumentRepository>();
         }        
     }
 }
