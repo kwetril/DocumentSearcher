@@ -4,16 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DocumentSearcher.Models;
+using DocumentSearcher.Models.DatabaseAccess.RepositoryInterface;
 
 namespace DocumentSearcher.Controllers
 {
+    [Authorize]
     public class DocumentController : Controller
     {
+        IUserRepository userRepository;
+        IIndexedDocumentRepository documentRepository;
+
+        public DocumentController(IIndexedDocumentRepository documentRepository, IUserRepository userRepository)
+        {
+            this.documentRepository = documentRepository;
+            this.userRepository = userRepository;
+        }
+
         //
         // GET: /Document/
         public ActionResult Index()
         {
-            return View();
+            var user = userRepository.FindByLogin(User.Identity.Name);
+            var documents = documentRepository.GetAllForUser(user);
+            return View(documents.ToArray());
         }
 
         [HttpGet]
@@ -29,11 +42,28 @@ namespace DocumentSearcher.Controllers
             {
                 return View(document);
             }
+            
+            var indexedDocument = ConstructIndexedDocument(document);
+            documentRepository.Save(indexedDocument);
 
-            byte[] uploadedFile = new byte[document.File.InputStream.Length];
-            document.File.InputStream.Read(uploadedFile, 0, uploadedFile.Length);
+            return RedirectToAction("Index");
+        }
 
-            return View();
+        private IndexedDocument ConstructIndexedDocument(DocumentModel document)
+        {
+            var uploadedFile = document.File;
+
+            IndexedDocument indexedDocument = new IndexedDocument();
+            indexedDocument.FileName = uploadedFile.FileName;
+            indexedDocument.FileContent = new byte[uploadedFile.InputStream.Length];
+            uploadedFile.InputStream.Read(indexedDocument.FileContent, 0, indexedDocument.FileContent.Length);
+
+            indexedDocument.CreatedDate = DateTime.Now;
+
+            var user = userRepository.FindByLogin(User.Identity.Name);
+            indexedDocument.UserId = user.Id;
+
+            return indexedDocument;
         }
 	}
 }
