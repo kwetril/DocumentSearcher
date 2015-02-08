@@ -40,30 +40,22 @@ namespace DocumentSearcher.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ModelState.AddModelError("", "File was not selected.");
                 return View(document);
             }
-            
-            var indexedDocument = ConstructIndexedDocument(document);
+
+            if (!document.HasValidExtension())
+            {
+                ModelState.AddModelError("", "Document's extension is not supported.");
+                return View(document);
+            }
+
+            var user = userRepository.FindByLogin(User.Identity.Name);
+
+            var indexedDocument = new IndexedDocument(document, user);
             documentRepository.Save(indexedDocument);
 
             return RedirectToAction("Index");
-        }
-
-        private IndexedDocument ConstructIndexedDocument(DocumentModel document)
-        {
-            var uploadedFile = document.File;
-
-            IndexedDocument indexedDocument = new IndexedDocument();
-            indexedDocument.FileName = uploadedFile.FileName;
-            indexedDocument.FileContent = new byte[uploadedFile.InputStream.Length];
-            uploadedFile.InputStream.Read(indexedDocument.FileContent, 0, indexedDocument.FileContent.Length);
-
-            indexedDocument.CreatedDate = DateTime.Now;
-
-            var user = userRepository.FindByLogin(User.Identity.Name);
-            indexedDocument.UserId = user.Id;
-
-            return indexedDocument;
         }
 	}
 }

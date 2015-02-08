@@ -7,7 +7,7 @@ namespace DocumentSearcher.Models.Helpers.TextExtractors
 {
     public static class TextExtractorFactory
     {
-        public static readonly string[] SupportedFormats = { "txt" };
+        public static readonly string[] SupportedFormats = { ".txt" };
 
         public static ITextExtractor GetTextExtractor(string documentExtension)
         {
