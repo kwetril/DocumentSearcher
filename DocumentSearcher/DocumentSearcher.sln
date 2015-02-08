@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentSearcher", "DocumentSearcher\DocumentSearcher.csproj", "{9E5CE9E4-1BEC-44FF-9F11-844D889DBF15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchCore", "SearchCore\SearchCore.csproj", "{68641C2D-2203-43F0-8928-52CACB15A0A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{9E5CE9E4-1BEC-44FF-9F11-844D889DBF15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E5CE9E4-1BEC-44FF-9F11-844D889DBF15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E5CE9E4-1BEC-44FF-9F11-844D889DBF15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68641C2D-2203-43F0-8928-52CACB15A0A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68641C2D-2203-43F0-8928-52CACB15A0A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68641C2D-2203-43F0-8928-52CACB15A0A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68641C2D-2203-43F0-8928-52CACB15A0A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
