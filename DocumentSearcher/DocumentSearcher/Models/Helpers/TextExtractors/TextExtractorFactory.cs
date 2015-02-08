@@ -13,7 +13,7 @@ namespace DocumentSearcher.Models.Helpers.TextExtractors
         {
             switch (documentExtension)
             {
-                case "txt":
+                case ".txt":
                     return new TxtTextExtractor();
                 default:
                     return null;

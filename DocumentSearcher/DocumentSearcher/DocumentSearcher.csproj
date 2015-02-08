@@ -170,6 +170,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Document\Upload.cshtml" />
+    <Content Include="Views\Document\_SupportedDocumentFormats.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
