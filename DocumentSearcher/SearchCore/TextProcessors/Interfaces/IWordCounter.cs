@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SearchCore.TextProcessors.Interfaces
 {
-    public interface ITokenizer
+    public interface IWordCounter
     {
-        string[] SplitToWords(string text);
+        Dictionary<string, int> CountWords(string[] text);
     }
 }

@@ -30,7 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="StemmersNet, Version=1.1.1.0, Culture=neutral, PublicKeyToken=5b16b226aedf3c3b, processorArchitecture=MSIL">
+      <HintPath>..\packages\StemmersNet.1.1.1.0\lib\net20\StemmersNet.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable">
+      <HintPath>..\packages\Microsoft.Bcl.Immutable.1.0.34\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,12 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextProcessors\DocumentIndexator.cs" />
+    <Compile Include="TextProcessors\Implementation\RusStopWordsProvider.cs" />
     <Compile Include="TextProcessors\Implementation\TextTokenizer.cs" />
+    <Compile Include="TextProcessors\Implementation\WordCounter.cs" />
+    <Compile Include="TextProcessors\Interfaces\IStopWordsProvider.cs" />
     <Compile Include="TextProcessors\Interfaces\ITokenizer.cs" />
+    <Compile Include="TextProcessors\Interfaces\IWordCounter.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

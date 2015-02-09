@@ -16,8 +16,15 @@ namespace DocumentSearcher.Models
 
         public bool HasValidExtension()
         {
-            string extension = Path.GetExtension(File.FileName);
-            return TextExtractorFactory.SupportedFormats.Contains(extension);
+            return TextExtractorFactory.SupportedFormats.Contains(DocumentExtension);
+        }
+
+        public string DocumentExtension
+        {
+            get
+            {
+                return Path.GetExtension(File.FileName);
+            }
         }
     }
 }

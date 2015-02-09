@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using DocumentSearcher.Models;
 using DocumentSearcher.Models.DatabaseAccess.RepositoryInterface;
+using DocumentSearcher.Models.Helpers.TextExtractors;
+using SearchCore.TextProcessors;
 
 namespace DocumentSearcher.Controllers
 {
@@ -13,11 +15,15 @@ namespace DocumentSearcher.Controllers
     {
         IUserRepository userRepository;
         IIndexedDocumentRepository documentRepository;
+        DocumentIndexator documentIndexator;
 
-        public DocumentController(IIndexedDocumentRepository documentRepository, IUserRepository userRepository)
+        public DocumentController(IIndexedDocumentRepository documentRepository,
+            IUserRepository userRepository, 
+            DocumentIndexator documentIndexator)
         {
             this.documentRepository = documentRepository;
             this.userRepository = userRepository;
+            this.documentIndexator = documentIndexator;
         }
 
         //
@@ -52,8 +58,9 @@ namespace DocumentSearcher.Controllers
 
             var user = userRepository.FindByLogin(User.Identity.Name);
 
-            var indexedDocument = new IndexedDocument(document, user);
+            var indexedDocument = new IndexedDocument(document, user, documentIndexator);
             documentRepository.Save(indexedDocument);
+
 
             return RedirectToAction("Index");
         }

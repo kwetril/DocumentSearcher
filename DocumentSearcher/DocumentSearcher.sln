@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentSearcher", "Documen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchCore", "SearchCore\SearchCore.csproj", "{68641C2D-2203-43F0-8928-52CACB15A0A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSearchCore", "TestSearchCore\TestSearchCore.csproj", "{A50B66A7-4125-47D0-ABAA-2FA76DFE4D87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{68641C2D-2203-43F0-8928-52CACB15A0A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68641C2D-2203-43F0-8928-52CACB15A0A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68641C2D-2203-43F0-8928-52CACB15A0A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A50B66A7-4125-47D0-ABAA-2FA76DFE4D87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A50B66A7-4125-47D0-ABAA-2FA76DFE4D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A50B66A7-4125-47D0-ABAA-2FA76DFE4D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A50B66A7-4125-47D0-ABAA-2FA76DFE4D87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

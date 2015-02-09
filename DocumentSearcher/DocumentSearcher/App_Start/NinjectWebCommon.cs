@@ -9,10 +9,13 @@ namespace DocumentSearcher.App_Start
     using DocumentSearcher.Models.DatabaseAccess;
     using DocumentSearcher.Models.DatabaseAccess.MongoRepositoryImpl;
     using DocumentSearcher.Models.DatabaseAccess.RepositoryInterface;
+    using Iveonik.Stemmers;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using MongoDB.Driver;
     using Ninject;
     using Ninject.Web.Common;
+    using SearchCore.TextProcessors.Implementation;
+    using SearchCore.TextProcessors.Interfaces;
 
     public static class NinjectWebCommon 
     {
@@ -69,6 +72,12 @@ namespace DocumentSearcher.App_Start
 
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IIndexedDocumentRepository>().To<IndexedDocumentRepository>();
+
+            kernel.Bind<ITokenizer>().To<TextTokenizer>();
+            kernel.Bind<IStopWordsProvider>().To<RusStopWordsProvider>();
+            kernel.Bind<IStemmer>().To<RussianStemmer>();
+            kernel.Bind<IWordCounter>().To<WordCounter>();
+            kernel.Bind<SearchCore.TextProcessors.DocumentIndexator>().ToSelf();
         }        
     }
 }

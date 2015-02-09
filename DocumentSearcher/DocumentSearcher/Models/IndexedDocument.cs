@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DocumentSearcher.Models.Helpers.TextExtractors;
 using MongoDB.Bson;
+using SearchCore.TextProcessors;
 
 namespace DocumentSearcher.Models
 {
@@ -12,21 +14,23 @@ namespace DocumentSearcher.Models
         {
         }
 
-        public IndexedDocument(DocumentModel uploadedDocument, User user)
+        public IndexedDocument(DocumentModel uploadedDocument, User user, DocumentIndexator documentIndexator)
         {
             var uploadedFile = uploadedDocument.File;
             FileName = uploadedFile.FileName;
-            FileContent = new byte[uploadedFile.InputStream.Length];
-            uploadedFile.InputStream.Read(FileContent, 0, FileContent.Length);
             CreatedDate = DateTime.Now;
             UserId = user.Id;
+
+            ITextExtractor textExtractor = TextExtractorFactory.GetTextExtractor(uploadedDocument.DocumentExtension);
+            string text = textExtractor.ExtractText(uploadedDocument) + ' ' + FileName;
+            WordCount = documentIndexator.ExtractWordCounts(text);
         }
 
         public ObjectId Id { get; set; }
 
         public string FileName { get; set; }
-        public byte[] FileContent { get; set; }
         public ObjectId UserId { get; set; }
         public DateTime CreatedDate { get; set; }
+        public Dictionary<string, int> WordCount {get; set; }
     }
 }
