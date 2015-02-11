@@ -15,14 +15,17 @@ namespace DocumentSearcher.Controllers
     {
         IUserRepository userRepository;
         IIndexedDocumentRepository documentRepository;
+        ITermsInDocumentsRepository termsInDocsRepository;
         DocumentIndexator documentIndexator;
 
         public DocumentController(IIndexedDocumentRepository documentRepository,
             IUserRepository userRepository, 
+            ITermsInDocumentsRepository termsInDocsRepository,
             DocumentIndexator documentIndexator)
         {
             this.documentRepository = documentRepository;
             this.userRepository = userRepository;
+            this.termsInDocsRepository = termsInDocsRepository;
             this.documentIndexator = documentIndexator;
         }
 
@@ -60,7 +63,7 @@ namespace DocumentSearcher.Controllers
 
             var indexedDocument = new IndexedDocument(document, user, documentIndexator);
             documentRepository.Save(indexedDocument);
-
+            termsInDocsRepository.AddDocumentForUser(indexedDocument, user);
 
             return RedirectToAction("Index");
         }

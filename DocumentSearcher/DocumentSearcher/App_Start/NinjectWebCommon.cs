@@ -72,6 +72,7 @@ namespace DocumentSearcher.App_Start
 
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IIndexedDocumentRepository>().To<IndexedDocumentRepository>();
+            kernel.Bind<ITermsInDocumentsRepository>().To<TermsInDocumentsRepository>();
 
             kernel.Bind<ITokenizer>().To<TextTokenizer>();
             kernel.Bind<IStopWordsProvider>().To<RusStopWordsProvider>();

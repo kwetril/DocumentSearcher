@@ -150,14 +150,17 @@
     </Compile>
     <Compile Include="Models\DatabaseAccess\MongoDbInitializer.cs" />
     <Compile Include="Models\DatabaseAccess\MongoRepositoryImpl\IndexedDocumentRepository.cs" />
+    <Compile Include="Models\DatabaseAccess\MongoRepositoryImpl\TermsInDocumentsRepository.cs" />
     <Compile Include="Models\DatabaseAccess\MongoRepositoryImpl\UserRepository.cs" />
     <Compile Include="Models\DatabaseAccess\RepositoryInterface\IIndexedDocumentRepository.cs" />
+    <Compile Include="Models\DatabaseAccess\RepositoryInterface\ITermsInDocumentsRepository.cs" />
     <Compile Include="Models\DatabaseAccess\RepositoryInterface\IUserRepository.cs" />
     <Compile Include="Models\DocumentModel.cs" />
     <Compile Include="Models\Helpers\TextExtractors\ITextExtractor.cs" />
     <Compile Include="Models\Helpers\TextExtractors\TextExtractorFactory.cs" />
     <Compile Include="Models\Helpers\TextExtractors\TxtTextExtractor.cs" />
     <Compile Include="Models\IndexedDocument.cs" />
+    <Compile Include="Models\TermsInDocuments.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
