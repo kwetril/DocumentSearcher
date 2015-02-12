@@ -79,6 +79,7 @@ namespace DocumentSearcher.App_Start
             kernel.Bind<IStemmer>().To<RussianStemmer>();
             kernel.Bind<IWordCounter>().To<WordCounter>();
             kernel.Bind<SearchCore.TextProcessors.DocumentIndexator>().ToSelf();
+            kernel.Bind<SearchCore.SearchHelpers.RelevancyCounter>().ToSelf();
         }        
     }
 }

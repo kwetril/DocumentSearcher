@@ -28,7 +28,7 @@
                 {
                     foreach(var doc in Model.Results)
                     {
-                        @Html.Partial("_SearchResultDocument", doc);
+                        @Html.Partial("_SearchResultDocument", doc.Document);
                     }
                 }
                 else

@@ -23,5 +23,20 @@ namespace SearchCore.TextProcessors.Implementation
             }
             return result;
         }
+
+        public Dictionary<string, double> CountWordFrequencies(string[] text)
+        {
+            var result = new Dictionary<string, double>();
+            foreach (string word in text)
+            {
+                double currentValue;
+                if (!result.TryGetValue(word, out currentValue))
+                {
+                    currentValue = 0.0;
+                }
+                result[word] = currentValue + 1.0 / text.Length;
+            }
+            return result;
+        }
     }
 }

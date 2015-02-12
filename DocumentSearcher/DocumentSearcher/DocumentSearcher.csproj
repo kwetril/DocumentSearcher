@@ -162,6 +162,7 @@
     <Compile Include="Models\IndexedDocument.cs" />
     <Compile Include="Models\QueryModel.cs" />
     <Compile Include="Models\SearchFormModel.cs" />
+    <Compile Include="Models\SearchResultItem.cs" />
     <Compile Include="Models\SearchSettingsModel.cs" />
     <Compile Include="Models\TermsInDocuments.cs" />
     <Compile Include="Models\User.cs" />

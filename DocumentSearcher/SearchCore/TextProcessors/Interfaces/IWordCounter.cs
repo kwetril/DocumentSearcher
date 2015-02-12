@@ -9,5 +9,7 @@ namespace SearchCore.TextProcessors.Interfaces
     public interface IWordCounter
     {
         Dictionary<string, int> CountWords(string[] text);
+
+        Dictionary<string, double> CountWordFrequencies(string[] text);
     }
 }

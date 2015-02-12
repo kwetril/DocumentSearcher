@@ -20,7 +20,7 @@ namespace DocumentSearcher.Models
 
         public void AddDocumentTerms(IndexedDocument document)
         {            
-            foreach (string term in document.WordCount.Keys)
+            foreach (string term in document.WordFrequency.Keys)
             {
                 int currentValue;
                 if (!WordInDocumentsAppearance.TryGetValue(term, out currentValue))

@@ -28,7 +28,7 @@ namespace SearchCore.TextProcessors
             this.wordCounter = wordCounter;
         }
 
-        public Dictionary<string, int> ExtractWordCounts(string documentText)
+        public Dictionary<string, double> ExtractWordFrequency(string documentText)
         {
             string[] words = tokenizer.SplitToWords(documentText);
             ImmutableHashSet<string> stopWords = stopWordsProvider.GetStopWords();
@@ -38,7 +38,7 @@ namespace SearchCore.TextProcessors
                 words[i] = stemmer.Stem(words[i]);
             }
             int totalCount = words.Length;
-            Dictionary<string, int> result = wordCounter.CountWords(words);
+            Dictionary<string, double> result = wordCounter.CountWordFrequencies(words);
             return result;
         }
     }

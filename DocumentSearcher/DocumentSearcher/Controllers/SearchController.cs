@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using DocumentSearcher.Models;
 using DocumentSearcher.Models.DatabaseAccess.RepositoryInterface;
+using SearchCore.SearchHelpers;
+using SearchCore.TextProcessors;
 
 namespace DocumentSearcher.Controllers
 {
@@ -13,13 +15,19 @@ namespace DocumentSearcher.Controllers
     {
         IIndexedDocumentRepository documentRepository;
         IUserRepository userRepository;
+        DocumentIndexator documentIndexator;
+        RelevancyCounter relevancyCounter;
 
         public SearchController(
             IIndexedDocumentRepository documentRepository, 
-            IUserRepository userRepository)
+            IUserRepository userRepository,
+            DocumentIndexator documentIndexator,
+            RelevancyCounter relevancyCounter)
         {
             this.documentRepository = documentRepository;
             this.userRepository = userRepository;
+            this.documentIndexator = documentIndexator;
+            this.relevancyCounter = relevancyCounter;
         }
 
         //
@@ -35,9 +43,16 @@ namespace DocumentSearcher.Controllers
         {
             if (!string.IsNullOrWhiteSpace(searchModel.Query.QueryString))
             {
+                var queryFrequencies = documentIndexator.ExtractWordFrequency(searchModel.Query.QueryString);
+
                 string login = User.Identity.Name;
                 var user = userRepository.FindByLogin(login);
-                searchModel.Results = documentRepository.GetAllForUser(user);
+                var documents = documentRepository.GetAllForUser(user); 
+                IEnumerable<Dictionary<string, double> > allFrequencies = documents.Select(doc => doc.WordFrequency);
+                searchModel.Results = documents.Select(doc => new SearchResultItem() {
+                    Document = doc,
+                    Relevancy = relevancyCounter.GetDocumentRelevancy(queryFrequencies, doc.WordFrequency, allFrequencies)
+                }).Where(result => result.Relevancy > 0).OrderByDescending(result => result.Relevancy).ToList();
             }
             return View(searchModel);
         }

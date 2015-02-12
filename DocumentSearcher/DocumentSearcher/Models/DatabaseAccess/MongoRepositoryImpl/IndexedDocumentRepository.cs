@@ -25,7 +25,7 @@ namespace DocumentSearcher.Models.DatabaseAccess.MongoRepositoryImpl
         public IEnumerable<IndexedDocument> GetAllForUser(User user)
         {
             var query = Query<IndexedDocument>.EQ(doc => doc.UserId, user.Id);
-            return DocumetCollection.Find(query).SetFields("FileName", "Content", "CreatedDate");
+            return DocumetCollection.Find(query);
         }
 
         private MongoCollection<IndexedDocument> DocumetCollection
