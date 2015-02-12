@@ -22,8 +22,8 @@ namespace DocumentSearcher.Models
             UserId = user.Id;
 
             ITextExtractor textExtractor = TextExtractorFactory.GetTextExtractor(uploadedDocument.DocumentExtension);
-            string text = textExtractor.ExtractText(uploadedDocument) + ' ' + FileName;
-            WordCount = documentIndexator.ExtractWordCounts(text);
+            Content = textExtractor.ExtractText(uploadedDocument);
+            WordCount = documentIndexator.ExtractWordCounts(Content +  ' ' + FileName);
         }
 
         public ObjectId Id { get; set; }
@@ -31,6 +31,7 @@ namespace DocumentSearcher.Models
         public string FileName { get; set; }
         public ObjectId UserId { get; set; }
         public DateTime CreatedDate { get; set; }
+        public string Content { get; set; }
         public Dictionary<string, int> WordCount {get; set; }
     }
 }

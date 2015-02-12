@@ -1,19 +1,43 @@
-﻿
+﻿@model DocumentSearcher.Models.SearchFormModel
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Search";
 }
 
-<div class="row" style="margin-top: 30px">
-    <div class="col-md-3"></div>
-    <div class="input-group col-md-6">
-        <input type="text" name="search" class="form-control" />
-        <div class="input-group-btn">
-            <input type="button" value="Search" class="btn btn-default" />
-            <button type="button" class="btn btn-default" >
-                <span class="glyphicon glyphicon-cog" ></span>
-            </button>
+@using (Html.BeginForm())
+{
+    <div class="row" style="margin-top: 30px">
+        <div class="col-md-3"></div>
+        <div class="input-group col-md-6">
+            @Html.TextBoxFor(m => m.Query.QueryString, new { @class = "form-control" })
+            <div class="input-group-btn">
+                <input type="submit" value="Search" class="btn btn-default" />
+                <button type="button" class="btn btn-default" >
+                    <span class="glyphicon glyphicon-cog" ></span>
+                </button>
+            </div>
         </div>
     </div>
-</div>
 
+    if (!string.IsNullOrWhiteSpace(Model.Query.QueryString))
+    {
+        <div class="row" style="margin-top: 20px">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                @if(Model.Results.Count() > 0)
+                {
+                    foreach(var doc in Model.Results)
+                    {
+                        @Html.Partial("_SearchResultDocument", doc);
+                    }
+                }
+                else
+                {
+                    <p>Your search did not match any document.</p>
+                }
+            </div>
+        </div>
+    }
+        
+}
 

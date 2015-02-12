@@ -160,6 +160,9 @@
     <Compile Include="Models\Helpers\TextExtractors\TextExtractorFactory.cs" />
     <Compile Include="Models\Helpers\TextExtractors\TxtTextExtractor.cs" />
     <Compile Include="Models\IndexedDocument.cs" />
+    <Compile Include="Models\QueryModel.cs" />
+    <Compile Include="Models\SearchFormModel.cs" />
+    <Compile Include="Models\SearchSettingsModel.cs" />
     <Compile Include="Models\TermsInDocuments.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -178,6 +181,7 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Document\Upload.cshtml" />
     <Content Include="Views\Document\_SupportedDocumentFormats.cshtml" />
+    <Content Include="Views\Search\_SearchResultDocument.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
