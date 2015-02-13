@@ -23,6 +23,30 @@ namespace DocumentSearcher.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
+        [StringLength(20)]
+        [Display(Name = "First name")]
+        public string FirstName { get; set; }
+
+        [StringLength(20)]
+        [Display(Name = "Last name")]
+        public string LastName { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                if (FirstName == null || LastName == null)
+                {
+                    return Login;
+                }
+                return string.Format("{0} {1}", FirstName, LastName);
+            }
+        }
+
+        [StringLength(10)]
+        [Display(Name = "University group")]
+        public string UniversityGroup { get; set; }
+
         public string Role {get; set; }
 
         public string PasswordSalt { get; set; }

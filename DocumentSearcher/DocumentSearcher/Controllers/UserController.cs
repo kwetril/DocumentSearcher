@@ -60,6 +60,9 @@ namespace DocumentSearcher.Controllers
                 userToSave.Login = user.Login;
                 userToSave.PasswordSalt = cryptoService.GenerateSalt();
                 userToSave.Password = cryptoService.Compute(user.Password, userToSave.PasswordSalt);
+                userToSave.FirstName = user.FirstName;
+                userToSave.LastName = user.LastName;
+                userToSave.UniversityGroup = user.UniversityGroup;
                 userToSave.Role = RoleHelper.UserRole;
                 userRepository.Create(userToSave);
                 return RedirectToAction("Index", "Search");
@@ -69,7 +72,7 @@ namespace DocumentSearcher.Controllers
                 ModelState.AddModelError("", "Registration data are incorrect.");
             }
 
-            return View();
+            return View(user);
         }
 
         public ActionResult LogOut(User user)

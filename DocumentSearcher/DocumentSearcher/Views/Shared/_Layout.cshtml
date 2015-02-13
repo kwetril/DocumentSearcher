@@ -60,7 +60,7 @@
                 </ul>
                 @if (Request.IsAuthenticated)
                 {
-                    <p class="navbar-text pull-right">Welcome, @Html.Encode(User.Identity.Name)!</p>
+                    <p class="navbar-text pull-right">Welcome, @Html.Encode((User as DocumentSearcher.Models.User).FullName)!</p>
                 }
             </div>
         </div>
