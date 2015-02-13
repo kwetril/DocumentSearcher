@@ -14,18 +14,15 @@ namespace DocumentSearcher.Controllers
     public class SearchController : Controller
     {
         IIndexedDocumentRepository documentRepository;
-        IUserRepository userRepository;
         DocumentIndexator documentIndexator;
         RelevancyCounter relevancyCounter;
 
         public SearchController(
             IIndexedDocumentRepository documentRepository, 
-            IUserRepository userRepository,
             DocumentIndexator documentIndexator,
             RelevancyCounter relevancyCounter)
         {
             this.documentRepository = documentRepository;
-            this.userRepository = userRepository;
             this.documentIndexator = documentIndexator;
             this.relevancyCounter = relevancyCounter;
         }
@@ -45,8 +42,7 @@ namespace DocumentSearcher.Controllers
             {
                 var queryFrequencies = documentIndexator.ExtractWordFrequency(searchModel.Query.QueryString);
 
-                string login = User.Identity.Name;
-                var user = userRepository.FindByLogin(login);
+                var user = User as User;
                 var documents = documentRepository.GetAllForUser(user); 
                 IEnumerable<Dictionary<string, double> > allFrequencies = documents.Select(doc => doc.WordFrequency);
                 searchModel.Results = documents.Select(doc => new SearchResultItem() {

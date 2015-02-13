@@ -79,6 +79,11 @@ namespace DocumentSearcher.App_Start
             kernel.Bind<IWordCounter>().To<WordCounter>();
             kernel.Bind<SearchCore.TextProcessors.DocumentIndexator>().ToSelf();
             kernel.Bind<SearchCore.SearchHelpers.RelevancyCounter>().ToSelf();
-        }        
+        }
+
+        public static IKernel GetKernel()
+        {
+            return bootstrapper.Kernel;
+        }
     }
 }

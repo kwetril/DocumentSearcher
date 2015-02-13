@@ -13,16 +13,13 @@ namespace DocumentSearcher.Controllers
     [Authorize]
     public class DocumentController : Controller
     {
-        IUserRepository userRepository;
         IIndexedDocumentRepository documentRepository;
         DocumentIndexator documentIndexator;
 
         public DocumentController(IIndexedDocumentRepository documentRepository,
-            IUserRepository userRepository, 
             DocumentIndexator documentIndexator)
         {
             this.documentRepository = documentRepository;
-            this.userRepository = userRepository;
             this.documentIndexator = documentIndexator;
         }
 
@@ -30,7 +27,7 @@ namespace DocumentSearcher.Controllers
         // GET: /Document/
         public ActionResult Index()
         {
-            var user = userRepository.FindByLogin(User.Identity.Name);
+            var user = User as User;
             var documents = documentRepository.GetAllForUser(user);
             return View(documents.ToArray());
         }
@@ -56,8 +53,7 @@ namespace DocumentSearcher.Controllers
                 return View(document);
             }
 
-            var user = userRepository.FindByLogin(User.Identity.Name);
-
+            var user = User as User;
             var indexedDocument = new IndexedDocument(document, user, documentIndexator);
             documentRepository.Save(indexedDocument);
 

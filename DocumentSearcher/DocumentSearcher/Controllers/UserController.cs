@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using DocumentSearcher.Models;
 using DocumentSearcher.Models.DatabaseAccess.RepositoryInterface;
+using DocumentSearcher.Models.Helpers;
 
 namespace DocumentSearcher.Controllers
 {
@@ -59,6 +60,7 @@ namespace DocumentSearcher.Controllers
                 userToSave.Login = user.Login;
                 userToSave.PasswordSalt = cryptoService.GenerateSalt();
                 userToSave.Password = cryptoService.Compute(user.Password, userToSave.PasswordSalt);
+                userToSave.Role = RoleHelper.UserRole;
                 userRepository.Create(userToSave);
                 return RedirectToAction("Index", "Search");
             }

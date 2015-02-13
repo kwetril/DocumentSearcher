@@ -154,6 +154,7 @@
     <Compile Include="Models\DatabaseAccess\RepositoryInterface\IIndexedDocumentRepository.cs" />
     <Compile Include="Models\DatabaseAccess\RepositoryInterface\IUserRepository.cs" />
     <Compile Include="Models\DocumentModel.cs" />
+    <Compile Include="Models\Helpers\RoleHelper.cs" />
     <Compile Include="Models\Helpers\TextExtractors\ITextExtractor.cs" />
     <Compile Include="Models\Helpers\TextExtractors\TextExtractorFactory.cs" />
     <Compile Include="Models\Helpers\TextExtractors\TxtTextExtractor.cs" />
