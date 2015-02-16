@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DocumentSearcher.Models.DatabaseAccess.RepositoryInterface;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 
@@ -28,6 +29,11 @@ namespace DocumentSearcher.Models.DatabaseAccess.MongoRepositoryImpl
             return DocumetCollection.Find(query);
         }
 
+        public IndexedDocument GetById(ObjectId documentId)
+        {
+            return DocumetCollection.FindOneById(documentId);
+        }
+
         private MongoCollection<IndexedDocument> DocumetCollection
         {
             get
@@ -35,5 +41,6 @@ namespace DocumentSearcher.Models.DatabaseAccess.MongoRepositoryImpl
                 return database.GetCollection<IndexedDocument>("Document");
             }
         }
+
     }
 }

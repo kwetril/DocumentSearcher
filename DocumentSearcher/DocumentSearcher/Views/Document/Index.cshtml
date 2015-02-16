@@ -19,7 +19,7 @@
         <tr>
             <td>@(i+1)</td>
             <td>
-                @Model[i].FileName
+                @Html.ActionLink(Model[i].FileName, "View", new { @id = Model[i].Id })
             </td>
             <td>
                 @Model[i].CreatedDate

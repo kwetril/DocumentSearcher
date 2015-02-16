@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using DocumentSearcher.Models;
 using DocumentSearcher.Models.DatabaseAccess.RepositoryInterface;
 using DocumentSearcher.Models.Helpers.TextExtractors;
+using MongoDB.Bson;
 using SearchCore.TextProcessors;
 
 namespace DocumentSearcher.Controllers
@@ -58,6 +59,32 @@ namespace DocumentSearcher.Controllers
             documentRepository.Save(indexedDocument);
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult View(ObjectId id)
+        {
+            if (id == null || id.Equals(ObjectId.Empty))
+            {
+                return RedirectToAction("Index");
+            }
+
+            IndexedDocument document = documentRepository.GetById(id);
+            if (document == null)
+            {
+                ViewBag.Message = "Document not found.";
+            }
+            else if (!HavePermissionsForDocument(document))
+            {
+                document = null;
+                ViewBag.Message = "You have no permissions to view this document.";
+            }
+
+            return View(document);
+        }
+
+        public bool HavePermissionsForDocument(IndexedDocument document)
+        {
+            return document.UserId.Equals((User as User).Id);
         }
 	}
 }

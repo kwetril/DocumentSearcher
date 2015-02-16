@@ -1,6 +1,6 @@
 ﻿@model DocumentSearcher.Models.IndexedDocument
 
 <div>
-    <strong>@Model.FileName</strong>
-    <p>@Model.Content.Substring(0, 100) ...</p>
+    <strong>@Html.ActionLink(Model.FileName, "View", "Document", new { @id = Model.Id}, null)</strong>
+    <p>@Model.Snippet</p>
 </div>

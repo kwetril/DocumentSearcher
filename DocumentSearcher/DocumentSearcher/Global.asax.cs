@@ -6,8 +6,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using DocumentSearcher.App_Start;
+using DocumentSearcher.Helpers;
 using DocumentSearcher.Models.DatabaseAccess.MongoRepositoryImpl;
 using DocumentSearcher.Models.DatabaseAccess.RepositoryInterface;
+using MongoDB.Bson;
 
 namespace DocumentSearcher
 {
@@ -17,6 +19,7 @@ namespace DocumentSearcher
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ModelBinders.Binders.Add(typeof(ObjectId), new MongoObjectIdBinder());
         }
 
         protected void Application_PostAuthenticateRequest()

@@ -1,0 +1,22 @@
+﻿@model DocumentSearcher.Models.IndexedDocument
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @if (Model != null)
+    {
+        <h3>@Model.FileName</h3>
+        <div>
+            @Model.Content
+        </div>
+    }
+    else
+    {
+        <p>@ViewBag.Message</p>
+    }
+</div>
+<div class="row" style="margin-top:20px">
+    @Html.ActionLink("View all documents", "Index")
+</div>
