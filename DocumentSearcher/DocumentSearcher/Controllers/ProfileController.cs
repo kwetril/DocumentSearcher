@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DocumentSearcher.Models;
 
 namespace DocumentSearcher.Controllers
 {
@@ -13,7 +14,7 @@ namespace DocumentSearcher.Controllers
         // GET: /Profile/
         public ActionResult Index()
         {
-            return View();
+            return View(User as User);
         }
 	}
 }

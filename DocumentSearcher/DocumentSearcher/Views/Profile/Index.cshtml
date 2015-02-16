@@ -1,7 +1,33 @@
-﻿
+﻿@model DocumentSearcher.Models.User
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<fieldset disabled="disabled">
+    <legend>Profile details</legend>
+    <div class="row">
+        <div class="form-group col-md-5">
+            <div>@Html.LabelFor(u => u.Login)</div>
+            <div>
+                @Html.TextBoxFor(u => u.Login, new { @class = "form-control" })
+            </div>
+
+            <div>@Html.LabelFor(u => u.FirstName)</div>
+            <div>
+                @Html.TextBoxFor(u => u.FirstName, new { @class = "form-control" })
+            </div>
+
+            <div>@Html.LabelFor(u => u.LastName)</div>
+            <div>
+                @Html.TextBoxFor(u => u.LastName, new { @class = "form-control" })
+            </div>
+
+            <div>@Html.LabelFor(u => u.UniversityGroup)</div>
+            <div>
+                @Html.TextBoxFor(u => u.UniversityGroup, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+</fieldset>
 
